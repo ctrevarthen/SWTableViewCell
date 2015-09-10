@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <UIKit/UIGestureRecognizerSubclass.h>
 #import "SWCellScrollView.h"
-#import "SWLongPressGestureRecognizer.h"
+#import "SWPanGestureRecognizer.h"
 #import "SWUtilityButtonTapGestureRecognizer.h"
 #import "NSMutableArray+SWUtilityButtons.h"
 
