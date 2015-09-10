@@ -8,7 +8,7 @@
 
 #import "SWLongPressGestureRecognizer.h"
 
-@implementation SWLongPressGestureRecognizer
+@implementation SWPanGestureRecognizer
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

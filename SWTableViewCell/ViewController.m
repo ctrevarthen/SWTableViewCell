@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+
+#import "BVReorderTableView.h"
 #import "SWTableViewCell.h"
 #import "UMTableViewCell.h"
 
@@ -57,6 +59,7 @@
         NSString *string = [NSString stringWithFormat:@"%d", i];
         [_testArray[i % _sections.count] addObject:string];
     }
+    
 }
 
 #pragma mark UITableViewDataSource
@@ -81,16 +84,6 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return _sections[section];
 }
-
-// Show index titles
-
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-//    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-//    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-//}
 
 #pragma mark - UIRefreshControl Selector
 
@@ -186,18 +179,12 @@
     return leftUtilityButtons;
 }
 
-// Set row height on an individual basis
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [self rowHeightForIndexPath:indexPath];
-//}
-//
-//- (CGFloat)rowHeightForIndexPath:(NSIndexPath *)indexPath {
-//    return ([indexPath row] * 10) + 60;
-//}
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set background color of cell here if you don't want default white
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
 }
 
 #pragma mark - SWTableViewDelegate
@@ -288,5 +275,32 @@
     return YES;
 }
 
+#pragma BVReorderTableView Delegate Methods
+
+// This method is called when starting the re-ording process. You insert a blank row object into your
+// data source and return the object you want to save for later. This method is only called once.
+- (id)saveObjectAndInsertBlankRowAtIndexPath:(NSIndexPath *)indexPath {
+    id object = _testArray[indexPath.section][indexPath.row];
+    _testArray[indexPath.section][indexPath.row] = @[];
+    return object;
+}
+
+// This method is called when the selected row is dragged to a new position. You simply update your
+// data source to reflect that the rows have switched places. This can be called multiple times
+// during the reordering process.
+- (void)moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    id object = _testArray[fromIndexPath.section][fromIndexPath.row];
+    [_testArray[fromIndexPath.section] removeObjectAtIndex:fromIndexPath.row];
+    [_testArray[toIndexPath.section] insertObject:object atIndex:toIndexPath.row];
+}
+
+
+// This method is called when the selected row is released to its new position. The object is the same
+// object you returned in saveObjectAndInsertBlankRowAtIndexPath:. Simply update the data source so the
+// object is in its new position. You should do any saving/cleanup here.
+- (void)finishReorderingWithObject:(id)object atIndexPath:(NSIndexPath *)indexPath; {
+    [_testArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:object];
+    // do any additional cleanup here
+}
 
 @end

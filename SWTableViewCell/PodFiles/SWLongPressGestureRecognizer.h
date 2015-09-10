@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
-@interface SWLongPressGestureRecognizer : UILongPressGestureRecognizer
+@interface SWPanGestureRecognizer : UIPanGestureRecognizer
 
 @end
 

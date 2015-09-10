@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
+#import "BVReorderTableView.h"
 
-@interface ViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
+@interface ViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, ReorderTableViewDelegate>
 
 @end
