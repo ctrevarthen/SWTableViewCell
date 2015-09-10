@@ -8,7 +8,7 @@ target 'SWTableViewCell' do
 end
 
 target 'SWTableViewCellTests' do
-  pod 'FBSnapshotTestCase'
+  pod 'FBSnapshotTestCase/Core'
   pod 'Expecta+Snapshots'
   pod 'Specta'
   pod 'Expecta'
