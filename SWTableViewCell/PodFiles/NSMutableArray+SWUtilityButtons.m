@@ -12,22 +12,33 @@
 
 - (void)sw_addUtilityButtonWithColor:(UIColor *)color title:(NSString *)title
 {
+    [self sw_addUtilityButtonWithBackgroundColor:color title:title titleColor:[UIColor whiteColor]];
+}
+
+- (void)sw_addUtilityButtonWithBackgroundColor:(UIColor *)backgroundColor title:(NSString *)title titleColor:(UIColor *)titleColor
+{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = color;
+    button.backgroundColor = backgroundColor;
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:titleColor forState:UIControlStateNormal];
     [button.titleLabel setAdjustsFontSizeToFitWidth:YES];
     [self addObject:button];
 }
 
 - (void)sw_addUtilityButtonWithColor:(UIColor *)color attributedTitle:(NSAttributedString *)title
 {
+    [self sw_addUtilityButtonWithBackgroundColor:color attributedTitle:title titleColor:[UIColor whiteColor]];
+}
+
+- (void)sw_addUtilityButtonWithBackgroundColor:(UIColor *)backgroundColor attributedTitle:(NSAttributedString *)title titleColor:(UIColor *)titleColor
+{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = color;
+    button.backgroundColor = backgroundColor;
     [button setAttributedTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:titleColor forState:UIControlStateNormal];
     [self addObject:button];
 }
+
 
 - (void)sw_addUtilityButtonWithColor:(UIColor *)color icon:(UIImage *)icon
 {
