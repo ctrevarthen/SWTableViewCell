@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Chris Wendel. All rights reserved.
 //
 
-#import "SWLongPressGestureRecognizer.h"
+#import "SWPanGestureRecognizer.h"
 
-@implementation SWLongPressGestureRecognizer
+@implementation SWPanGestureRecognizer
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
